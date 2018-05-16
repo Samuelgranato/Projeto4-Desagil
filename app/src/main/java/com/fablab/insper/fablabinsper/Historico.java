@@ -2,9 +2,6 @@ package com.fablab.insper.fablabinsper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,15 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class Historico extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_historico);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.tempo__emprestimos, menu);
         return true;
     }
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity
             finish();
 
         } else if (id == R.id.pedidos_button) {
-            startActivity(new Intent(getApplicationContext(), Pedidos.class));
+            startActivity(new Intent(getApplicationContext(), Emprestimos.class));
             finish();
 
         } else if (id == R.id.calendario_button) {
@@ -85,12 +84,11 @@ public class MainActivity extends AppCompatActivity
             finish();
 
         } else if (id == R.id.produtos_button) {
-            startActivity(new Intent(getApplicationContext(), Produtos.class));
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
             finish();
 
         } else if (id == R.id.tempo_emprestimos_button) {
-            startActivity(new Intent(getApplicationContext(), Tempo_Emprestimos.class));
-            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

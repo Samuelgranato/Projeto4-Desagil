@@ -34,15 +34,15 @@
             android:label="@string/title_activity_calendario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Pedidos"
+            android:name=".Emprestimos"
             android:label="@string/title_activity_pedidos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Tempo_Emprestimos"
+            android:name=".Historico"
             android:label="@string/title_activity_tempo__emprestimos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Produtos"
+            android:name=".Instrucoes"
             android:label="@string/title_activity_produtos"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
