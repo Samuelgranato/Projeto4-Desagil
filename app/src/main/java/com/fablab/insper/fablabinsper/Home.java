@@ -2,9 +2,6 @@ package com.fablab.insper.fablabinsper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -78,16 +75,16 @@ public class Home extends AppCompatActivity
 
 
         } else if (id == R.id.pedidos_button) {
-            startActivity(new Intent(getApplicationContext(), Pedidos.class));
+            startActivity(new Intent(getApplicationContext(), Emprestimos.class));
 
         } else if (id == R.id.calendario_button) {
             startActivity(new Intent(getApplicationContext(), Calendario.class));
 
         } else if (id == R.id.produtos_button) {
-            startActivity(new Intent(getApplicationContext(), Produtos.class));
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
 
         } else if (id == R.id.tempo_emprestimos_button) {
-            startActivity(new Intent(getApplicationContext(), Tempo_Emprestimos.class));
+            startActivity(new Intent(getApplicationContext(), Historico.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

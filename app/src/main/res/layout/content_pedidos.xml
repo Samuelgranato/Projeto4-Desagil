@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Pedidos"
-    tools:showIn="@layout/app_bar">
+    tools:context=".Emprestimos">
+    <!--tools:showIn="@layout/app_bar">-->
 
     <Button
         android:id="@+id/button5"
@@ -17,4 +17,5 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
