@@ -35,15 +35,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Emprestimos"
-            android:label="@string/title_activity_pedidos"
+            android:label="Empréstimos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Historico"
-            android:label="@string/title_activity_tempo__emprestimos"
+            android:label="Histórico"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Instrucoes"
-            android:label="@string/title_activity_produtos"
+            android:label="Instruções"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

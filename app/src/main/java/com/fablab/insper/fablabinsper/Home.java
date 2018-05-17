@@ -57,10 +57,7 @@ public class Home extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -74,16 +71,16 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home_button) {
 
 
-        } else if (id == R.id.pedidos_button) {
+        } else if (id == R.id.emprestimos_button) {
             startActivity(new Intent(getApplicationContext(), Emprestimos.class));
 
         } else if (id == R.id.calendario_button) {
             startActivity(new Intent(getApplicationContext(), Calendario.class));
 
-        } else if (id == R.id.produtos_button) {
+        } else if (id == R.id.instrucoes_button) {
             startActivity(new Intent(getApplicationContext(), Instrucoes.class));
 
-        } else if (id == R.id.tempo_emprestimos_button) {
+        } else if (id == R.id.historico_button) {
             startActivity(new Intent(getApplicationContext(), Historico.class));
         }
 
