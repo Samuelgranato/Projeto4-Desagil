@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Calendario"
-    tools:showIn="@layout/app_bar">
+    tools:context=".Calendario">
 
-    <Button
-        android:id="@+id/button8"
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="176dp"
-        android:text="Button"
+        android:layout_marginEnd="143dp"
+        android:layout_marginTop="297dp"
+        android:text="Calendario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

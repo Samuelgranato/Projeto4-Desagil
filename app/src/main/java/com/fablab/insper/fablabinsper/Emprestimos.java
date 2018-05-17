@@ -57,9 +57,9 @@ public class Emprestimos extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -74,17 +74,17 @@ public class Emprestimos extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Home.class));
             finish();
 
-        } else if (id == R.id.pedidos_button) {
+        } else if (id == R.id.emprestimos_button) {
 
         } else if (id == R.id.calendario_button) {
             startActivity(new Intent(getApplicationContext(), Calendario.class));
             finish();
 
-        } else if (id == R.id.produtos_button) {
+        } else if (id == R.id.instrucoes_button) {
             startActivity(new Intent(getApplicationContext(), Instrucoes.class));
             finish();
 
-        } else if (id == R.id.tempo_emprestimos_button) {
+        } else if (id == R.id.historico_button) {
             startActivity(new Intent(getApplicationContext(), Historico.class));
             finish();
         }
