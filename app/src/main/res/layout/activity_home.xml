@@ -23,7 +23,10 @@
         android:background="@color/color_nav_view_back"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
+        app:itemTextColor="@color/menu_item_color"
+        app:itemIconTint="@color/menu_item_color"
         app:menu="@menu/activity_drawer" >
+
 
         <ImageView
             android:id="@+id/imageView2"
