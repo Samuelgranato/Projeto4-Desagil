@@ -23,11 +23,13 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
+
 public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
@@ -71,7 +74,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mEmailView.setText("foo@example.com");
         populateAutoComplete();
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setText("hello");
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -85,7 +88,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        ImageButton mEmailSignInButton = (ImageButton) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

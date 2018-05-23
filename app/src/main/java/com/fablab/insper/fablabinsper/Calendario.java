@@ -2,9 +2,6 @@ package com.fablab.insper.fablabinsper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -60,9 +57,9 @@ public class Calendario extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -77,18 +74,18 @@ public class Calendario extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Home.class));
             finish();
 
-        } else if (id == R.id.pedidos_button) {
-            startActivity(new Intent(getApplicationContext(), Pedidos.class));
+        } else if (id == R.id.emprestimos_button) {
+            startActivity(new Intent(getApplicationContext(), Emprestimos.class));
             finish();
 
         } else if (id == R.id.calendario_button) {
 
-        } else if (id == R.id.produtos_button) {
-            startActivity(new Intent(getApplicationContext(), Produtos.class));
+        } else if (id == R.id.instrucoes_button) {
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
             finish();
 
-        } else if (id == R.id.tempo_emprestimos_button) {
-            startActivity(new Intent(getApplicationContext(), Tempo_Emprestimos.class));
+        } else if (id == R.id.historico_button) {
+            startActivity(new Intent(getApplicationContext(), Historico.class));
             finish();
         }
 

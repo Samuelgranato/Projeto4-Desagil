@@ -8,12 +8,20 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+    <!--ActionBar actionBar = getActionBar();-->
+    <!--actionBar.setDisplayHomeAsUpEnabled(true);-->
+
+
     <include
         layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <include layout="@layout/content_calendario" />
+
+
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

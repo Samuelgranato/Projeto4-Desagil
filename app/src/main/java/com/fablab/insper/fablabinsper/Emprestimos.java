@@ -2,9 +2,6 @@ package com.fablab.insper.fablabinsper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,16 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Produtos extends AppCompatActivity
+public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produtos);
+        setContentView(R.layout.activity_emprestimos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -49,7 +45,7 @@ public class Produtos extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.produtos, menu);
+        //getMenuInflater().inflate(R.menu.pedidos, menu);
         return true;
     }
 
@@ -61,9 +57,9 @@ public class Produtos extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -78,21 +74,21 @@ public class Produtos extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Home.class));
             finish();
 
-        } else if (id == R.id.pedidos_button) {
-            startActivity(new Intent(getApplicationContext(), Pedidos.class));
-            finish();
+        } else if (id == R.id.emprestimos_button) {
 
         } else if (id == R.id.calendario_button) {
             startActivity(new Intent(getApplicationContext(), Calendario.class));
             finish();
 
-        } else if (id == R.id.produtos_button) {
+        } else if (id == R.id.instrucoes_button) {
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
+            finish();
 
-
-        } else if (id == R.id.tempo_emprestimos_button) {
-            startActivity(new Intent(getApplicationContext(), Tempo_Emprestimos.class));
+        } else if (id == R.id.historico_button) {
+            startActivity(new Intent(getApplicationContext(), Historico.class));
             finish();
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

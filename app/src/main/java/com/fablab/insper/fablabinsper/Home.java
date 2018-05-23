@@ -2,9 +2,6 @@ package com.fablab.insper.fablabinsper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -60,10 +57,7 @@ public class Home extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -77,17 +71,17 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home_button) {
 
 
-        } else if (id == R.id.pedidos_button) {
-            startActivity(new Intent(getApplicationContext(), Pedidos.class));
+        } else if (id == R.id.emprestimos_button) {
+            startActivity(new Intent(getApplicationContext(), Emprestimos.class));
 
         } else if (id == R.id.calendario_button) {
             startActivity(new Intent(getApplicationContext(), Calendario.class));
 
-        } else if (id == R.id.produtos_button) {
-            startActivity(new Intent(getApplicationContext(), Produtos.class));
+        } else if (id == R.id.instrucoes_button) {
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
 
-        } else if (id == R.id.tempo_emprestimos_button) {
-            startActivity(new Intent(getApplicationContext(), Tempo_Emprestimos.class));
+        } else if (id == R.id.historico_button) {
+            startActivity(new Intent(getApplicationContext(), Historico.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

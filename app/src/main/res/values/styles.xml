@@ -11,6 +11,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@android:color/holo_red_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:actionMenuTextColor">@color/menu_item_color</item>-->
 
 
     </style>

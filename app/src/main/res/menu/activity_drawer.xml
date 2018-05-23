@@ -3,28 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home_button"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Home" />
 
         <item
-            android:id="@+id/pedidos_button"
+            android:id="@+id/emprestimos_button"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Pedidos de Empréstimos" />
+            android:title="Empréstimos" />
         <item
             android:id="@+id/calendario_button"
             android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
             android:title="Calendário" />
         <item
-            android:id="@+id/produtos_button"
+            android:id="@+id/instrucoes_button"
             android:icon="@drawable/ic_forward_black_24dp"
-            android:title="Produtos Emprestados" />
+            android:title="Instruções das Máquinas" />
         <item
-            android:id="@+id/tempo_emprestimos_button"
+            android:id="@+id/historico_button"
             android:icon="@drawable/ic_access_time_black_24dp"
-            android:title="Tempo de Empréstimos" />
+            android:title="Histórico" />
     </group>
 
 </menu>
