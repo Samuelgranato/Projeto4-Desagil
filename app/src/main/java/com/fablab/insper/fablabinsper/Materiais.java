@@ -49,7 +49,7 @@ public class Materiais extends AppCompatActivity implements NavigationView.OnNav
                         "TesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesoura" +
                         "TesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesouraTesoura");
     }
-        LinearLayout Status = new LinearLayout(this);
+        //LinearLayout Status = new LinearLayout(this);
 
 
 
