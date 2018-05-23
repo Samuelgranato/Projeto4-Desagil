@@ -14,11 +14,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,7 +42,8 @@ public class Emprestimos extends AppCompatActivity
 
         scrollView.addView(linearLayout);
 
-        ImageView imageView1 = new ImageView(this);
+
+        ImageButton imageView1 = new ImageButton(this);
         TextView nome1 = new TextView(this);
         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params1t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -52,10 +56,12 @@ public class Emprestimos extends AppCompatActivity
         nome1.setText("Tesoura");
         imageView1.setLayoutParams(params1);
         imageView1.setImageResource(R.drawable.cortadora_laser);
+        imageView1.setOnClickListener(b1);
         linearLayout.addView(imageView1);
         linearLayout.addView(nome1);
 
-        ImageView imageView2 = new ImageView(this);
+
+        ImageButton imageView2 = new ImageButton(this);
         TextView nome2 = new TextView(this);
         LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params2t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -68,10 +74,11 @@ public class Emprestimos extends AppCompatActivity
         nome2.setText("Tesoura");
         imageView2.setLayoutParams(params2);
         imageView2.setImageResource(R.drawable.cortadora_laser);
+        imageView2.setOnClickListener(b2);
         linearLayout.addView(imageView2);
         linearLayout.addView(nome2);
 
-        ImageView imageView3 = new ImageView(this);
+        ImageButton imageView3 = new ImageButton(this);
         TextView nome3 = new TextView(this);
         LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params3t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -83,10 +90,11 @@ public class Emprestimos extends AppCompatActivity
         nome3.setText("Tesoura");
         imageView3.setLayoutParams(params3);
         imageView3.setImageResource(R.drawable.cortadora_laser);
+        imageView3.setOnClickListener(b3);
         linearLayout.addView(imageView3);
         linearLayout.addView(nome3);
 
-        ImageView imageView4 = new ImageView(this);
+        ImageButton imageView4 = new ImageButton(this);
         TextView nome4 = new TextView(this);
         LinearLayout.LayoutParams params4 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params4t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -98,10 +106,11 @@ public class Emprestimos extends AppCompatActivity
         nome4.setText("Tesoura");
         imageView4.setLayoutParams(params4);
         imageView4.setImageResource(R.drawable.cortadora_laser);
+        imageView4.setOnClickListener(b4);
         linearLayout.addView(imageView4);
         linearLayout.addView(nome4);
 
-        ImageView imageView5 = new ImageView(this);
+        ImageButton imageView5 = new ImageButton(this);
         TextView nome5 = new TextView(this);
         LinearLayout.LayoutParams params5 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params5t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -113,10 +122,11 @@ public class Emprestimos extends AppCompatActivity
         params5t.gravity = Gravity.TOP;
         imageView5.setLayoutParams(params5);
         imageView5.setImageResource(R.drawable.cortadora_laser);
+        imageView5.setOnClickListener(b5);
         linearLayout.addView(imageView5);
         linearLayout.addView(nome5);
 
-        ImageView imageView6 = new ImageView(this);
+        ImageButton imageView6 = new ImageButton(this);
         TextView nome6 = new TextView(this);
         LinearLayout.LayoutParams params6 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams params6t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -128,6 +138,7 @@ public class Emprestimos extends AppCompatActivity
         params6t.gravity = Gravity.TOP;
         imageView6.setLayoutParams(params6);
         imageView6.setImageResource(R.drawable.cortadora_laser);
+        imageView6.setOnClickListener(b6);
         linearLayout.addView(imageView6);
         linearLayout.addView(nome6);
 
@@ -137,6 +148,49 @@ public class Emprestimos extends AppCompatActivity
         }
     }
 
+    View.OnClickListener b1 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
+
+    View.OnClickListener b2 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
+    View.OnClickListener b3 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
+    View.OnClickListener b4 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
+    View.OnClickListener b5 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
+    View.OnClickListener b6 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), Materiais.class));
+            finish();
+        }
+    };
 
 
     @Override
