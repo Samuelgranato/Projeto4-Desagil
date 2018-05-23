@@ -10,6 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
 
 public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -18,19 +27,117 @@ public class Emprestimos extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emprestimos);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+        ScrollView scrollView = new ScrollView(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        scrollView.setLayoutParams(layoutParams);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(linearParams);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        scrollView.addView(linearLayout);
+
+        ImageView imageView1 = new ImageView(this);
+        TextView nome1 = new TextView(this);
+        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params1t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params1.setMargins(0, 0, 0, 5);
+        params1t.setMargins(0, 0, 0, 5);
+        params1.gravity = Gravity.CENTER;
+        //params1t.height = params1.getMarginEnd();
+        params1t.gravity = Gravity.LEFT;
+        nome1.setLayoutParams(params1t);
+        nome1.setText("Tesoura");
+        imageView1.setLayoutParams(params1);
+        imageView1.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView1);
+        linearLayout.addView(nome1);
+
+        ImageView imageView2 = new ImageView(this);
+        TextView nome2 = new TextView(this);
+        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params2t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params2.setMargins(0, 0, 0, 5);
+        params2t.setMargins(0, 0, 0, 5);
+        params2.gravity = Gravity.CENTER;
+        //params2t.height = params2.getMarginEnd();
+        params2t.gravity = Gravity.LEFT;
+        nome2.setLayoutParams(params2t);
+        nome2.setText("Tesoura");
+        imageView2.setLayoutParams(params2);
+        imageView2.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView2);
+        linearLayout.addView(nome2);
+
+        ImageView imageView3 = new ImageView(this);
+        TextView nome3 = new TextView(this);
+        LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params3t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params3.setMargins(0, 0, 0, 5);
+        params3t.setMargins(0, 0, 0, 5);
+        params3.gravity = Gravity.CENTER;
+        params3t.gravity = Gravity.TOP;
+        nome3.setLayoutParams(params3t);
+        nome3.setText("Tesoura");
+        imageView3.setLayoutParams(params3);
+        imageView3.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView3);
+        linearLayout.addView(nome3);
+
+        ImageView imageView4 = new ImageView(this);
+        TextView nome4 = new TextView(this);
+        LinearLayout.LayoutParams params4 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params4t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params4.setMargins(0, 0, 0, 25);
+        params4t.setMargins(0, 0, 0, 5);
+        params4.gravity = Gravity.CENTER;
+        params4t.gravity = Gravity.TOP;
+        nome4.setLayoutParams(params4t);
+        nome4.setText("Tesoura");
+        imageView4.setLayoutParams(params4);
+        imageView4.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView4);
+        linearLayout.addView(nome4);
+
+        ImageView imageView5 = new ImageView(this);
+        TextView nome5 = new TextView(this);
+        LinearLayout.LayoutParams params5 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params5t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params5.setMargins(0, 0, 0, 25);
+        params5.setMargins(0, 0, 0, 5);
+        nome5.setLayoutParams(params5t);
+        nome5.setText("Tesoura");
+        params5.gravity = Gravity.CENTER;
+        params5t.gravity = Gravity.TOP;
+        imageView5.setLayoutParams(params5);
+        imageView5.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView5);
+        linearLayout.addView(nome5);
+
+        ImageView imageView6 = new ImageView(this);
+        TextView nome6 = new TextView(this);
+        LinearLayout.LayoutParams params6 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params6t = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params6.setMargins(0, 0, 0, 5);
+        params6t.setMargins(0, 0, 0, 25);
+        nome6.setLayoutParams(params6t);
+        nome6.setText("Tesoura");
+        params6.gravity = Gravity.CENTER;
+        params6t.gravity = Gravity.TOP;
+        imageView6.setLayoutParams(params6);
+        imageView6.setImageResource(R.drawable.cortadora_laser);
+        linearLayout.addView(imageView6);
+        linearLayout.addView(nome6);
+
+        LinearLayout linearLayout1 = findViewById(R.id.rootContainer_emprestimos);
+        if (linearLayout1 != null) {
+            linearLayout1.addView(scrollView);
+        }
     }
+
+
 
     @Override
     public void onBackPressed() {
