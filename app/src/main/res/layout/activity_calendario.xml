@@ -9,8 +9,8 @@
     tools:openDrawer="start">
 
 
-    ActionBar actionBar = getActionBar();
-    actionBar.setDisplayHomeAsUpEnabled(true);
+    <!--ActionBar actionBar = getActionBar();-->
+    <!--actionBar.setDisplayHomeAsUpEnabled(true);-->
 
 
     <include
