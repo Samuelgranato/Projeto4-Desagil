@@ -8,8 +8,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextClock;
+import android.widget.TextView;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Historico extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,6 +32,15 @@ public class Historico extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        LinkedList<List> news = new LinkedList<>();
+        LinkedList noticia_nova = new LinkedList();
+        noticia_nova.add("Chegou impressora nova");
+        noticia_nova.add(R.drawable.cortadora_laser);
+        noticia_nova.add("Essa impressora faz muita coisa chave");
+
+        news.add(noticia_nova);
+        news.add(noticia_nova);
+        news.add(noticia_nova);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -31,6 +51,68 @@ public class Historico extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        ScrollView scrollView = new ScrollView(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        scrollView.setLayoutParams(layoutParams);
+        scrollView.setPaddingRelative(0,150,0,0);
+
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(linearParams);
+
+        scrollView.addView(linearLayout);
+//        GridView grid = new GridView(this);
+//        scrollView.addView(grid);
+
+        for(int i = 0; i < news.size(); i++){
+
+            ImageView imageView1 = new ImageView(this);
+            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params1.setMargins(0, 30, 0, 30);
+            params1.gravity = Gravity.CENTER;
+            imageView1.setLayoutParams(params1);
+            imageView1.setImageResource(R.drawable.cortadora_laser);
+            linearLayout.addView(imageView1);
+            TextView textnews = new TextView(this);
+
+            textnews.setText((CharSequence) news.get(i).get(0));
+            linearLayout.addView(textnews);
+
+
+        }
+
+//        ImageView imageView1 = new ImageView(this);
+//        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params1.setMargins(0, 30, 0, 30);
+//        params1.gravity = Gravity.CENTER;
+//        imageView1.setLayoutParams(params1);
+//        imageView1.setImageResource(R.drawable.cortadora_laser);
+//        linearLayout.addView(imageView1);
+//
+//        ImageView imageView2 = new ImageView(this);
+//        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params2.setMargins(0, 0, 0, 30);
+//        params2.gravity = Gravity.CENTER;
+//        imageView2.setLayoutParams(params2);
+//        imageView2.setImageResource(R.drawable.cortadora_laser);
+//        linearLayout.addView(imageView2);
+//
+//        ImageView imageView3 = new ImageView(this);
+//        LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params3.setMargins(0, 0, 0, 30);
+//        params3.gravity = Gravity.CENTER;
+//        imageView3.setLayoutParams(params3);
+//        imageView3.setImageResource(R.drawable.cortadora_laser);
+//        linearLayout.addView(imageView3);
+
+        LinearLayout linearLayout1 = findViewById(R.id.rootContainer_historico);
+        if (linearLayout1 != null) {
+            linearLayout1.addView(scrollView);
+        }
     }
 
     @Override
