@@ -27,7 +27,6 @@
         app:itemIconTint="@color/menu_item_color"
         app:menu="@menu/activity_drawer" >
 
-
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
