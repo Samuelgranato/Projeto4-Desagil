@@ -99,7 +99,7 @@ public class Home extends AppCompatActivity
         LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(linearParams);
-
+//vg
         scrollView.addView(linearLayout);
 
         LinearLayout linearLayout1 = findViewById(R.id.rootContainer_home);
