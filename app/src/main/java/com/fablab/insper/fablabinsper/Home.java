@@ -117,6 +117,7 @@ public class Home extends AppCompatActivity
                 uDados.setTitulo(ds_1.getValue(LendoDadosHome.class).getTitulo());
                 listaObjetos.add(uDados);
             }
+            break;
         }
         Log.i("Esperado", String.valueOf(listaObjetos.get(0).getTexto()));
 
