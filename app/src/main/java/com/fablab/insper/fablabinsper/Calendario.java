@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -32,7 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class Calendario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
-    public List<LendoDadosHome> listaObjetos = new ArrayList<LendoDadosHome>();
+    public List<LendoDados> listaObjetos = new ArrayList<LendoDados>();
     private LinearLayout linearLayout;
     private LinearLayout linearLayout_1;
     private LinearLayout verticalLayout;
@@ -117,7 +115,7 @@ public class Calendario extends AppCompatActivity
                 mostrarDados(dataSnapshot,data_string);
                 Log.i("Esperadaaao", data_string);
                 for(int i = 0; i < listaObjetos.size(); i++){
-//                    Log.i("nomeeeeeeeee", String.valueOf(listaObjetos.get(i).getNome_pessoa()));
+                    Log.i("nomeeeeeeeee", String.valueOf(listaObjetos.get(i).getNome_pessoa()));
 
                     if(listaObjetos.get(i).getData_dev().equals(data_string)) {
                         Log.i("Esperado", "aqui temmmmmmmm");
@@ -154,25 +152,23 @@ public class Calendario extends AppCompatActivity
     }
 
     private void mostrarDados(DataSnapshot dataSnapshot,String data_string) {
+        listaObjetos = new ArrayList<LendoDados>();
         for (DataSnapshot ds: dataSnapshot.getChildren()){
-            listaObjetos = new ArrayList<LendoDadosHome>();
             String key = ds.getKey().toString();
-            String value = ds.getValue().toString();
-
 
             if(key.equals("Objetos_emprestados")) {
                 for (DataSnapshot data : ds.getChildren()) {
                     String key_data = data.getKey().toString();
                     Log.i("data", String.valueOf(key_data));
-                    if(key_data.equals(data_string)) {
 
+                    if(key_data.equals(data_string)) {
                         for (DataSnapshot objeto : data.getChildren()) {
-                            LendoDadosHome uDados = new LendoDadosHome();
+                            LendoDados uDados = new LendoDados();
                             String key_index = ds.getKey().toString();
 
-                            uDados.setNome_pessoa(objeto.getValue(LendoDadosHome.class).getNome_pessoa());
-                            uDados.setData_dev(objeto.getValue(LendoDadosHome.class).getData_dev());
-                            uDados.setNome_sensor(objeto.getValue(LendoDadosHome.class).getNome_sensor());
+                            uDados.setNome_pessoa(objeto.getValue(LendoDados.class).getNome_pessoa());
+                            uDados.setData_dev(objeto.getValue(LendoDados.class).getData_dev());
+                            uDados.setNome_sensor(objeto.getValue(LendoDados.class).getNome_sensor());
                             listaObjetos.add(uDados);
                         }
 //                        Log.i("nomeeeeeeeee", String.valueOf(uDados.getNome_pessoa()));

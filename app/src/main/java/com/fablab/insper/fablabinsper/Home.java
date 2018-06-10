@@ -9,17 +9,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +28,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Home extends AppCompatActivity
@@ -40,7 +35,7 @@ public class Home extends AppCompatActivity
 
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
-    public List<LendoDadosHome> listaObjetos = new ArrayList<LendoDadosHome>();
+    public List<LendoDados> listaObjetos = new ArrayList<LendoDados>();
     private LinearLayout linearLayout;
     private LinearLayout linearLayout_1;
     private LinearLayout verticalLayout;
@@ -110,16 +105,20 @@ public class Home extends AppCompatActivity
 
     private void mostrarDados(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds: dataSnapshot.getChildren()){
-            for (DataSnapshot ds_1:ds.getChildren()){
-                LendoDadosHome uDados = new LendoDadosHome();
-                uDados.setImg(ds_1.getValue(LendoDadosHome.class).getImg());
-                uDados.setTexto(ds_1.getValue(LendoDadosHome.class).getTexto());
-                uDados.setTitulo(ds_1.getValue(LendoDadosHome.class).getTitulo());
-                listaObjetos.add(uDados);
+            String key = ds.getKey().toString();
+            Log.i("data", String.valueOf(key));
+
+            if(key.equals("Home")) {
+                for (DataSnapshot ds_1 : ds.getChildren()) {
+                    LendoDados uDados = new LendoDados();
+                    uDados.setImg(ds_1.getValue(LendoDados.class).getImg());
+                    uDados.setTexto(ds_1.getValue(LendoDados.class).getTexto());
+                    uDados.setTitulo(ds_1.getValue(LendoDados.class).getTitulo());
+                    listaObjetos.add(uDados);
+                }
             }
-            break;
+
         }
-        Log.i("Esperado", String.valueOf(listaObjetos.get(0).getTexto()));
 
 
     }
@@ -163,8 +162,8 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home_button) {
-            startActivity(new Intent(getApplicationContext(), Home.class));
-            finish();
+//            startActivity(new Intent(getApplicationContext(), Home.class));
+////            finish();
 
         } else if (id == R.id.emprestimos_button) {
             startActivity(new Intent(getApplicationContext(), Emprestimos.class));
