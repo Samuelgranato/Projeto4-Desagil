@@ -53,7 +53,7 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas").child("Home");
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -109,20 +109,18 @@ public class Home extends AppCompatActivity
     }
 
     private void mostrarDados(DataSnapshot dataSnapshot) {
-        for (DataSnapshot ds: dataSnapshot.getChildren()){
-            for (DataSnapshot ds_1:ds.getChildren()){
-                LendoDadosHome uDados = new LendoDadosHome();
-                uDados.setImg(ds_1.getValue(LendoDadosHome.class).getImg());
-                uDados.setTexto(ds_1.getValue(LendoDadosHome.class).getTexto());
-                uDados.setTitulo(ds_1.getValue(LendoDadosHome.class).getTitulo());
-                listaObjetos.add(uDados);
-            }
-            break;
+        for (DataSnapshot ds_1:dataSnapshot.getChildren()){
+            LendoDadosHome uDados = new LendoDadosHome();
+            uDados.setImg(ds_1.getValue(LendoDadosHome.class).getImg());
+            uDados.setTexto(ds_1.getValue(LendoDadosHome.class).getTexto());
+            uDados.setTitulo(ds_1.getValue(LendoDadosHome.class).getTitulo());
+            listaObjetos.add(uDados);
         }
-        Log.i("Esperado", String.valueOf(listaObjetos.get(0).getTexto()));
-
-
+//        Log.i("Esperado", String.valueOf(listaObjetos.get(0).getTexto()));
     }
+
+
+
 
     @Override
     public void onBackPressed() {
