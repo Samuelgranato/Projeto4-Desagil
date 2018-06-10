@@ -88,6 +88,7 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         ScrollView scrollView = new ScrollView(this);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0,160,0,0);
@@ -110,6 +111,7 @@ public class Home extends AppCompatActivity
 
     private void mostrarDados(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds_1:dataSnapshot.getChildren()){
+            Log.d("Home", String.valueOf(ds_1.getValue()));
             LendoDadosHome uDados = new LendoDadosHome();
             uDados.setImg(ds_1.getValue(LendoDadosHome.class).getImg());
             uDados.setTexto(ds_1.getValue(LendoDadosHome.class).getTexto());

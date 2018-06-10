@@ -9,15 +9,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,18 +24,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Historico extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    public String KeyUsuarioApp;
+    private List<LendoDadosHistorico> listaItemHistorico = new ArrayList<LendoDadosHistorico>();
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
-    public List<LendoDadosHome> listaObjetos = new ArrayList<LendoDadosHome>();
     private LinearLayout linearLayout;
 
     @Override
@@ -56,6 +53,72 @@ public class Historico extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Comeca Programcao Hsitorico
+        KeyUsuarioApp = "usuario_1";
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas").child("Usuarios");
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mostrarDados(dataSnapshot);
+                for(int i = 0; i < listaItemHistorico.size(); i++){
+                    LayoutInflater inflater = Historico.this.getLayoutInflater();
+                    LinearLayout layout =  (LinearLayout) inflater.inflate(R.layout.padrao_histotico, null);
+
+                    TextView nome_item = layout.findViewById(R.id.nome_item_historico);
+                    nome_item.setText((CharSequence) listaItemHistorico.get(i).getNome());
+
+                    TextView data_emp = layout.findViewById(R.id.data_emp_historico);
+                    data_emp.setText((CharSequence) listaItemHistorico.get(i).getData_emp());
+
+                    TextView data_dev = layout.findViewById(R.id.data_dev_historico);
+                    data_dev.setText((CharSequence) listaItemHistorico.get(i).getData_dev());
+                    linearLayout.addView(layout);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        ScrollView scrollView = new ScrollView(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(0,160,0,0);
+        scrollView.setLayoutParams(layoutParams);
+
+
+
+        linearLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(linearParams);
+
+        scrollView.addView(linearLayout);
+
+        LinearLayout linearLayout1 = findViewById(R.id.rootContainer_historico);
+        if (linearLayout1 != null) {
+            linearLayout1.addView(scrollView);
+        }
+    }
+
+
+    private void mostrarDados(DataSnapshot dataSnapshot) {
+        for (DataSnapshot usuario :dataSnapshot.getChildren()){
+            if (usuario.getKey().equals(KeyUsuarioApp)) {
+                for (DataSnapshot item : usuario.getChildren()){
+                    LendoDadosHistorico uDadosHistorico = new LendoDadosHistorico();
+                    Log.d("Historico", String.valueOf(item.getValue()));
+                    uDadosHistorico.setData_dev(item.getValue(LendoDadosHistorico.class).getData_dev());
+                    uDadosHistorico.setData_emp(item.getValue(LendoDadosHistorico.class).getData_emp());
+                    uDadosHistorico.setNome(item.getValue(LendoDadosHistorico.class).getNome());
+                    listaItemHistorico.add(uDadosHistorico);
+                }
+            }
+        }
 
     }
 

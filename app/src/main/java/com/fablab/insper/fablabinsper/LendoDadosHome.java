@@ -39,10 +39,6 @@ class LendoDadosHome {
     }
 
 
-
-
-
-
     public String getNome_pessoa() {
         return nome_pessoa;
     }
