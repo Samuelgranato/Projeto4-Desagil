@@ -13,15 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Instrucoes extends AppCompatActivity
+public class InstrucoesShop extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_instrucoes);
+        setContentView(R.layout.activity_instrucoes_shop);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -33,34 +32,6 @@ public class Instrucoes extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageButton imgbutton = (ImageButton) findViewById(R.id.shobotb);
-        ImageButton imgbutton2 = (ImageButton) findViewById(R.id.impressorabutton);
-        imgbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                /*
-                 * Intent is just like glue which helps to navigate one activity
-                 * to another.
-                 */Intent intent = new Intent(Instrucoes.this,
-                        InstrucoesShop.class);
-                startActivity(intent); // startActivity allow you to move
-            }
-        });
-        imgbutton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                /*
-                 * Intent is just like glue which helps to navigate one activity
-                 * to another.
-                 */Intent intent = new Intent(Instrucoes.this,
-                        InstrucoesImpressora.class);
-                startActivity(intent); // startActivity allow you to move
-            }
-        });
     }
 
     @Override
@@ -114,6 +85,8 @@ public class Instrucoes extends AppCompatActivity
             finish();
 
         } else if (id == R.id.instrucoes_button) {
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
+            finish();
 
 
         } else if (id == R.id.historico_button) {
