@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
     <LinearLayout
+        android:background="@drawable/layout_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,6 +22,8 @@
         android:textAlignment="center" />
 
     <LinearLayout
+        android:background="@drawable/textlines"
+        android:layout_margin="7dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"

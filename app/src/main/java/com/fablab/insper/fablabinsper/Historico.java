@@ -65,10 +65,13 @@ public class Historico extends AppCompatActivity
                 mostrarDados(dataSnapshot);
                 for(int i = 0; i < listaItemHistorico.size(); i++){
                     LayoutInflater inflater = Historico.this.getLayoutInflater();
-                    LinearLayout layout =  (LinearLayout) inflater.inflate(R.layout.padrao_histotico, null);
-
+                    LinearLayout layout =  (LinearLayout) inflater.inflate(R.layout.padrao_historico, null);
                     TextView nome_item = layout.findViewById(R.id.nome_item_historico);
                     nome_item.setText((CharSequence) listaItemHistorico.get(i).getNome());
+                    LinearLayout.LayoutParams linearParams_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    linearParams_1.setMargins(5,20,5,0);
+                    layout.setLayoutParams(linearParams_1);
+
 
                     TextView data_emp = layout.findViewById(R.id.data_emp_historico);
                     data_emp.setText((CharSequence) listaItemHistorico.get(i).getData_emp());

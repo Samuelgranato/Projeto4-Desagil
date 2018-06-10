@@ -69,6 +69,9 @@ public class Home extends AppCompatActivity
                     TextView tituloNoticia = layout.findViewById(R.id.tituloNoticia);
                     tituloNoticia.setText((CharSequence) listaObjetos.get(i).getTitulo());
                     Picasso.get().load(listaObjetos.get(i).getImg()).into(imagemNoticia);
+                    LinearLayout.LayoutParams linearParams_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    linearParams_1.setMargins(5,20,5,0);
+                    layout.setLayoutParams(linearParams_1);
                     linearLayout.addView(layout);
                 }
             }
