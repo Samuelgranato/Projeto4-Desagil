@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "269393403553",
+    "firebase_url": "https://projeto4-desagil-21cab.firebaseio.com",
+    "project_id": "projeto4-desagil-21cab",
+    "storage_bucket": "projeto4-desagil-21cab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269393403553:android:bcf8bc85fbc78659",
+        "android_client_info": {
+          "package_name": "com.fablab.insper.fablabinsper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269393403553-mbtjuo89ev3up10luct714vcehb390bq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fablab.insper.fablabinsper",
+            "certificate_hash": "e80838a023955b0ce44a58aad64ff439d678cc27"
+          }
+        },
+        {
+          "client_id": "269393403553-44qjk7ul050m5vtafebkk6o13l9ho0gb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "269393403553-44qjk7ul050m5vtafebkk6o13l9ho0gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhgGmmh-m401L7Q54c4nj_kZ6QVaAWQ5E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269393403553-44qjk7ul050m5vtafebkk6o13l9ho0gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

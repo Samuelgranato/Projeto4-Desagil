@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -40,6 +42,9 @@ public class Home extends AppCompatActivity
     private StorageReference mStorageRef;
     public List<LendoDadosHome> listaObjetos = new ArrayList<LendoDadosHome>();
     private LinearLayout linearLayout;
+    private LinearLayout linearLayout_1;
+    private LinearLayout verticalLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,21 +61,15 @@ public class Home extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mostrarDados(dataSnapshot);
                 for(int i = 0; i < listaObjetos.size(); i++){
-                    ImageView imageView1 = new ImageView(Home.this);
-                    LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params1.setMargins(0, 30, 0, 30);
-                    params1.gravity = Gravity.CENTER;
-                    imageView1.setLayoutParams(params1);
-                    Picasso.get().load(listaObjetos.get(i).getImg()).into(imageView1);
-                    linearLayout.addView(imageView1);
-                    TextView textnews = new TextView(Home.this);
-                    textnews.setText((CharSequence) listaObjetos.get(i).getTexto());
-                    TextView titulonews = new TextView(Home.this);
-                    titulonews.setText((CharSequence) listaObjetos.get(i).getTitulo());
-                    linearLayout.addView(textnews);
-                    linearLayout.addView(titulonews);
-
-
+                    LayoutInflater inflater = Home.this.getLayoutInflater();
+                    LinearLayout layout =  (LinearLayout) inflater.inflate(R.layout.padrao_noticia, null);
+                    ImageView imagemNoticia = layout.findViewById(R.id.imagemNoticia);
+                    TextView textoNoticia = layout.findViewById(R.id.textoNoticia);
+                    textoNoticia.setText((CharSequence) listaObjetos.get(i).getTexto());
+                    TextView tituloNoticia = layout.findViewById(R.id.tituloNoticia);
+                    tituloNoticia.setText((CharSequence) listaObjetos.get(i).getTitulo());
+                    Picasso.get().load(listaObjetos.get(i).getImg()).into(imagemNoticia);
+                    linearLayout.addView(layout);
                 }
             }
 
@@ -86,17 +85,18 @@ public class Home extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         ScrollView scrollView = new ScrollView(this);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(0,160,0,0);
         scrollView.setLayoutParams(layoutParams);
-        scrollView.setPaddingRelative(0,150,0,0);
+
 
 
         linearLayout = new LinearLayout(this);
-        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(linearParams);
 
@@ -117,6 +117,7 @@ public class Home extends AppCompatActivity
                 uDados.setTitulo(ds_1.getValue(LendoDadosHome.class).getTitulo());
                 listaObjetos.add(uDados);
             }
+            break;
         }
         Log.i("Esperado", String.valueOf(listaObjetos.get(0).getTexto()));
 

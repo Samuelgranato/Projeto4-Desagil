@@ -5,4 +5,6 @@
     <color name="colorAccent">#fe0004</color>
     <color name="color_nav_view_back">#ca2e30</color>
     <color name="menu_item_color">#dcd5d5</color>
+    <color name="black">#000000</color>
+    <color name="popup_background">#ffffff</color>
 </resources>

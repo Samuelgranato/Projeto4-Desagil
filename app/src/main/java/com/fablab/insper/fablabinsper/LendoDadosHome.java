@@ -6,6 +6,10 @@ class LendoDadosHome {
     private String titulo;
     private String texto;
 
+    private String nome_sensor;
+    private String nome_pessoa;
+    private String data_dev;
+
     public LendoDadosHome(){
 
     }
@@ -33,4 +37,36 @@ class LendoDadosHome {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+
+
+
+
+
+
+    public String getNome_pessoa() {
+        return nome_pessoa;
+    }
+
+    public void setNome_pessoa(String nome_pessoa) {
+        this.nome_pessoa = nome_pessoa;
+    }
+
+    public String getNome_sensor() {
+        return nome_sensor;
+    }
+
+    public void setNome_sensor(String nome_sensor) {
+        this.nome_sensor = nome_sensor;
+    }
+
+    public String getData_dev() {
+        return data_dev;
+    }
+
+    public void setData_dev(String data_dev) {
+        this.data_dev= data_dev;
+    }
+
+
+
 }
