@@ -8,11 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-
-    <!--ActionBar actionBar = getActionBar();-->
-    <!--actionBar.setDisplayHomeAsUpEnabled(true);-->
-
-
     <include
         layout="@layout/app_bar"
         android:layout_width="match_parent"
@@ -20,17 +15,16 @@
 
     <include layout="@layout/content_calendario" />
 
-
-
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/holo_red_dark"
+        android:background="@color/color_nav_view_back"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
+        app:itemTextColor="@color/menu_item_color"
+        app:itemIconTint="@color/menu_item_color"
         app:menu="@menu/activity_drawer" >
 
         <ImageView
@@ -41,4 +35,4 @@
             app:srcCompat="@drawable/insper_logo" />
     </android.support.design.widget.NavigationView>
 
-    </android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout>

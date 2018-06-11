@@ -189,6 +189,7 @@ public class Home extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Historico.class));
             finish();
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
