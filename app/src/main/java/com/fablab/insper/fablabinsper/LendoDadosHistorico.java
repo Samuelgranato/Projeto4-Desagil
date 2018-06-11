@@ -4,6 +4,7 @@ public class LendoDadosHistorico {
 
     private String nome;
     private  String data_dev;
+    private String data_emp;
 
     public LendoDadosHistorico(){
 
@@ -33,7 +34,7 @@ public class LendoDadosHistorico {
         this.data_emp = data_emp;
     }
 
-    private String data_emp;
+
 
 
 }

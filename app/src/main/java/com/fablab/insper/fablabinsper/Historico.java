@@ -31,7 +31,6 @@ import java.util.List;
 public class Historico extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     public String KeyUsuarioApp;
     private List<LendoDadosHistorico> listaItemHistorico = new ArrayList<LendoDadosHistorico>();
     private DatabaseReference mDatabase;

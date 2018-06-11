@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/layout_border"
+    android:background="@drawable/borda_completa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
@@ -17,7 +17,7 @@
         android:textSize="25dp" />
 
     <LinearLayout
-        android:background="@drawable/textlines"
+        android:background="@drawable/borda_cima"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="@drawable/textlines"
+        android:background="@drawable/borda_cima"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
