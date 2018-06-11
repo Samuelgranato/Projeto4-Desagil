@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
     <LinearLayout
-        android:background="@drawable/layout_border"
+        android:background="@drawable/borda_completa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -22,7 +22,7 @@
         android:textAlignment="center" />
 
     <LinearLayout
-        android:background="@drawable/textlines"
+        android:background="@drawable/borda_cima"
         android:layout_margin="7dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,16 +31,18 @@
 
 
     <ImageView
+            android:layout_margin="5dp"
             android:id="@+id/imagemNoticia"
             android:layout_gravity="center"
             android:layout_height="180dp"
-            android:layout_width="200dp"
-            android:rotation="90"/>
+            android:layout_width="200dp" />
+
 
         <TextView
             android:id="@+id/textoNoticia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
             android:text="TextView" />
     </LinearLayout>
 
