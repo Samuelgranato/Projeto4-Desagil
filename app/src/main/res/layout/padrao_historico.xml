@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/layout_border"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nome_item_historico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textSize="25dp" />
+
+    <LinearLayout
+        android:background="@drawable/textlines"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView4"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data do Emprestimo:"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/data_emp_historico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="TextView"
+            android:textSize="17dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/textlines"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data de Devolução:"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/data_dev_historico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="TextView"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -9,13 +9,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Home extends AppCompatActivity
@@ -64,8 +69,10 @@ public class Home extends AppCompatActivity
                     TextView tituloNoticia = layout.findViewById(R.id.tituloNoticia);
                     tituloNoticia.setText((CharSequence) listaObjetos.get(i).getTitulo());
                     Picasso.get().load(listaObjetos.get(i).getImg()).into(imagemNoticia);
+                    LinearLayout.LayoutParams linearParams_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    linearParams_1.setMargins(5,20,5,0);
+                    layout.setLayoutParams(linearParams_1);
                     linearLayout.addView(layout);
-
                 }
             }
 
