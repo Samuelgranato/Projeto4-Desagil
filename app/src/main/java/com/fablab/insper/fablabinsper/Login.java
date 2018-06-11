@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "usuario_1:user1", "usuario_2:user2",
+            "samuelvgb:samuel", "gabrielvf1:gabriel",
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -73,11 +73,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mEmailView.setText("usuario_1");
+        mEmailView.setText("gabrielvf1");
         populateAutoComplete();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setText("user1");
+        mPasswordView.setText("gabriel");
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {

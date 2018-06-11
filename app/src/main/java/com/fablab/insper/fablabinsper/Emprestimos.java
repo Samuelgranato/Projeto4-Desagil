@@ -48,6 +48,8 @@ import java.util.Map;
 public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase2;
+
     private StorageReference mStorageRef;
     public List<LendoDados> listaObjetos = new ArrayList<LendoDados>();
     private LinearLayout linearLayout;
@@ -103,6 +105,7 @@ public class Emprestimos extends AppCompatActivity
                     myList.add(listaObjetos.get(i).getAtraso_emprestimo());
                     myList.add(listaObjetos.get(i).getPerda_emprestimo());
                     myList.add(listaObjetos.get(i).getNome_emprestimo());
+                    myList.add(listaObjetos.get(i).getNome_pessoa());
 
 
 
@@ -202,10 +205,11 @@ public class Emprestimos extends AppCompatActivity
         myDialog2 = new Dialog(this);
 
         ImageButton confirma_button = (ImageButton) myDialog.findViewById(R.id.confirma);
+        final String finalDay = day;
         confirma_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowPopup2(v,day,reportDate,map.get(id).get(2));
+                ShowPopup2(v, finalDay,reportDate,map.get(id).get(4),map.get(id).get(5));
             }
         });
 
@@ -214,7 +218,7 @@ public class Emprestimos extends AppCompatActivity
         myDialog.show();
     }
 
-    public void ShowPopup2(final View v,String day, String reportDate, String nome) {
+    public void ShowPopup2(final View v, final String devolucao, final String retirada, final String nome,final String nome_pessoa) {
         final TextView txtclose;
         myDialog2.setContentView(R.layout.popup_confirmacao);
         final LinearLayout linearLayout_root = myDialog2.findViewById(R.id.rootPopUp);
@@ -225,43 +229,91 @@ public class Emprestimos extends AppCompatActivity
         okclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Esperadaaao1", "efefefeff");
+                myDialog2.dismiss();
+                myDialog.dismiss();
+//                Log.i("Esperadaaao1", "efefefeff");
 
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas").child("Usuarios");
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas");
                 mStorageRef = FirebaseStorage.getInstance().getReference();
 
                 myDialog = new Dialog(Emprestimos.this);
 
-                mDatabase.addValueEventListener(new ValueEventListener() {
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.i("Esperadaaao2", "efefefeff");
-                        for (DataSnapshot usuario : dataSnapshot.getChildren()) {
-                            if (usuario.getKey().equals(Login.KeyUsuarioApp)) {
-                                Log.i("Esperadaaao3", "efefefeff");
+//                        Log.i("Esperadaaao2", "efefefeff");
+                        for (DataSnapshot usr : dataSnapshot.getChildren()) {
+                            if (usr.getKey().equals("Usuarios")) {
+                                for (DataSnapshot usuario : usr.getChildren()) {
+                                    if (usuario.getKey().equals(Login.KeyUsuarioApp)) {
+//                                Log.i("Esperadaaao3", "efefefeff");
 
-                                for (DataSnapshot item : usuario.getChildren()) {
+                                        for (DataSnapshot item : usuario.getChildren()) {
 
-                                    if (item.getKey().equals("items")) {
-                                        Log.i("Esperadaaao2", "efefefeff");
+                                            if (item.getKey().equals("items")) {
+//                                        Log.i("Esperadaaao2", "efefefeff");
 
-                                        int i = 1;
-                                        while(item.child("item_"+Integer.toString(i)).exists()){
-                                            i+=1;
-                                        }
+                                                int i = 1;
+                                                while (item.child("item_" + Integer.toString(i)).exists()) {
+                                                    i += 1;
+                                                }
                                         Log.i("Esperadaaao3223", "item_"+Integer.toString(i));
-                                            item.child("item_"+Integer.toString(i)).child("data_dev");
-                                        mDatabase.child("Paginas").child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_"+Integer.toString(i)).child("data_dev").setValue()
-                                        mDatabase.child("Paginas").child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_"+Integer.toString(i)).child("data_emp").setValue()
-                                        mDatabase.child("Paginas").child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_"+Integer.toString(i)).child("nome").setValue()
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("data_dev").setValue(devolucao);
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("nome").setValue(nome);
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("data_emp").setValue(retirada);
+//
+                                                String dev_format = (devolucao.substring(0,2)+":"+devolucao.substring(3,5)+":"+devolucao.substring(6,10));
+                                                if(dev_format.charAt(2)==':' && dev_format.charAt(3)=='0'){
+                                                    dev_format=dev_format.substring(0,3)+dev_format.substring(4);
+                                                }
+
+
+                                                for (DataSnapshot obj : dataSnapshot.getChildren()) {
+                                                    if (obj.getKey().equals("Objetos_emprestados")) {
+                                                        for (DataSnapshot data : obj.getChildren()) {
+
+                                                            if (data.getKey().equals(dev_format)) {
+
+
+                                                                int j = 1;
+                                                                while (data.child(Integer.toString(j)).exists()) {
+                                                                    j += 1;
+
+                                                                }
+
+                                                                Log.i("aaaaaaaaaa", Integer.toString(j));
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("data_dev").setValue(dev_format);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("nome_pessoa").setValue(Login.KeyUsuarioApp);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("nome_sensor").setValue(nome);
+
+//                                                                Log.i("aaaaaaaaaa", "aaddwdd");
+
+
+
+                                                            }else{
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("data_dev").setValue(dev_format);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("nome_pessoa").setValue(Login.KeyUsuarioApp);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("nome_sensor").setValue(nome);
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+
 
 //                                        for (DataSnapshot items : item.getChildren()) {
 //
 //                                        }
+
+                                            }
+
+                                        }
                                     }
                                 }
                             }
                         }
+
                     }
 
                     @Override
@@ -270,9 +322,7 @@ public class Emprestimos extends AppCompatActivity
                     }
                 });
 
-                mDatabase.child("Paginas").child("usuario_1").push().setValue(1);
-                myDialog2.dismiss();
-                myDialog.dismiss();
+
             }
         });
         myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
