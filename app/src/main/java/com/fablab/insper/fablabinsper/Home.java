@@ -182,7 +182,8 @@ public class Home extends AppCompatActivity
             finish();
 
         } else if (id == R.id.instrucoes_button) {
-
+            startActivity(new Intent(getApplicationContext(), Instrucoes.class));
+            finish();
 
         } else if (id == R.id.historico_button) {
             startActivity(new Intent(getApplicationContext(), Historico.class));

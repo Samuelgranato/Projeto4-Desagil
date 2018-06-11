@@ -48,6 +48,8 @@ import java.util.Map;
 public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase2;
+
     private StorageReference mStorageRef;
     public List<LendoDados> listaObjetos = new ArrayList<LendoDados>();
     private LinearLayout linearLayout;
@@ -102,6 +104,8 @@ public class Emprestimos extends AppCompatActivity
                     myList.add(listaObjetos.get(i).getIntervalo_emprestimo());
                     myList.add(listaObjetos.get(i).getAtraso_emprestimo());
                     myList.add(listaObjetos.get(i).getPerda_emprestimo());
+                    myList.add(listaObjetos.get(i).getNome_emprestimo());
+                    myList.add(listaObjetos.get(i).getNome_pessoa());
 
 
 
@@ -111,7 +115,8 @@ public class Emprestimos extends AppCompatActivity
 
                     checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                           ShowPopup(buttonView,checkbox.getId());
+                            ShowPopup(buttonView,checkbox.getId());
+                            checkbox.setChecked(false);
                         }
                     });
 
@@ -158,7 +163,7 @@ public class Emprestimos extends AppCompatActivity
         }
     }
 
-    public void ShowPopup(final View v,int id) {
+    public void ShowPopup(final View v, final int id) {
         final TextView txtclose;
         Button btnFollow;
         myDialog.setContentView(R.layout.popup_descricao);
@@ -169,7 +174,7 @@ public class Emprestimos extends AppCompatActivity
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date hoje = Calendar.getInstance().getTime();
-        String reportDate = df.format(hoje);
+        final String reportDate = df.format(hoje);
         String day = reportDate.substring(0,2);
 
         int day_int = Integer.parseInt(day);
@@ -200,10 +205,11 @@ public class Emprestimos extends AppCompatActivity
         myDialog2 = new Dialog(this);
 
         ImageButton confirma_button = (ImageButton) myDialog.findViewById(R.id.confirma);
+        final String finalDay = day;
         confirma_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowPopup2(v);
+                ShowPopup2(v, finalDay,reportDate,map.get(id).get(4),map.get(id).get(5));
             }
         });
 
@@ -212,7 +218,7 @@ public class Emprestimos extends AppCompatActivity
         myDialog.show();
     }
 
-    public void ShowPopup2(final View v) {
+    public void ShowPopup2(final View v, final String devolucao, final String retirada, final String nome,final String nome_pessoa) {
         final TextView txtclose;
         myDialog2.setContentView(R.layout.popup_confirmacao);
         final LinearLayout linearLayout_root = myDialog2.findViewById(R.id.rootPopUp);
@@ -225,6 +231,98 @@ public class Emprestimos extends AppCompatActivity
             public void onClick(View v) {
                 myDialog2.dismiss();
                 myDialog.dismiss();
+//                Log.i("Esperadaaao1", "efefefeff");
+
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas");
+                mStorageRef = FirebaseStorage.getInstance().getReference();
+
+                myDialog = new Dialog(Emprestimos.this);
+
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Log.i("Esperadaaao2", "efefefeff");
+                        for (DataSnapshot usr : dataSnapshot.getChildren()) {
+                            if (usr.getKey().equals("Usuarios")) {
+                                for (DataSnapshot usuario : usr.getChildren()) {
+                                    if (usuario.getKey().equals(Login.KeyUsuarioApp)) {
+//                                Log.i("Esperadaaao3", "efefefeff");
+
+                                        for (DataSnapshot item : usuario.getChildren()) {
+
+                                            if (item.getKey().equals("items")) {
+//                                        Log.i("Esperadaaao2", "efefefeff");
+
+                                                int i = 1;
+                                                while (item.child("item_" + Integer.toString(i)).exists()) {
+                                                    i += 1;
+                                                }
+                                        Log.i("Esperadaaao3223", "item_"+Integer.toString(i));
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("data_dev").setValue(devolucao);
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("nome").setValue(nome);
+                                                mDatabase.child("Usuarios").child(Login.KeyUsuarioApp).child("items").child("item_" + Integer.toString(i)).child("data_emp").setValue(retirada);
+//
+                                                String dev_format = (devolucao.substring(0,2)+":"+devolucao.substring(3,5)+":"+devolucao.substring(6,10));
+                                                if(dev_format.charAt(2)==':' && dev_format.charAt(3)=='0'){
+                                                    dev_format=dev_format.substring(0,3)+dev_format.substring(4);
+                                                }
+
+
+                                                for (DataSnapshot obj : dataSnapshot.getChildren()) {
+                                                    if (obj.getKey().equals("Objetos_emprestados")) {
+                                                        for (DataSnapshot data : obj.getChildren()) {
+
+                                                            if (data.getKey().equals(dev_format)) {
+
+
+                                                                int j = 1;
+                                                                while (data.child(Integer.toString(j)).exists()) {
+                                                                    j += 1;
+
+                                                                }
+
+                                                                Log.i("aaaaaaaaaa", Integer.toString(j));
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("data_dev").setValue(dev_format);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("nome_pessoa").setValue(Login.KeyUsuarioApp);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child(Integer.toString(j)).child("nome_sensor").setValue(nome);
+
+//                                                                Log.i("aaaaaaaaaa", "aaddwdd");
+
+
+
+                                                            }else{
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("data_dev").setValue(dev_format);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("nome_pessoa").setValue(Login.KeyUsuarioApp);
+                                                                mDatabase.child("Objetos_emprestados").child(dev_format).child("1").child("nome_sensor").setValue(nome);
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+
+
+//                                        for (DataSnapshot items : item.getChildren()) {
+//
+//                                        }
+
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
         });
         myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

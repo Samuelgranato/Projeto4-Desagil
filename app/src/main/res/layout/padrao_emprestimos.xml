@@ -9,6 +9,7 @@
     android:baselineAligned="false"> <!-- to show what the parent is -->
 
     <LinearLayout
+        android:background="@drawable/borda_baixo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"

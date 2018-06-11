@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world",
+            "samuelvgb:samuel", "gabrielvf1:gabriel",
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -65,6 +65,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    static String KeyUsuarioApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +73,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mEmailView.setText("foo@example.com");
+        mEmailView.setText("gabrielvf1");
         populateAutoComplete();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setText("hello");
+        mPasswordView.setText("gabriel");
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -200,7 +201,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
@@ -326,6 +327,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
+                    KeyUsuarioApp= pieces[0];
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
