@@ -32,11 +32,11 @@ public class Historico extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    public String KeyUsuarioApp;
     private List<LendoDadosHistorico> listaItemHistorico = new ArrayList<LendoDadosHistorico>();
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
     private LinearLayout linearLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class Historico extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Comeca Programcao Hsitorico
-        KeyUsuarioApp = "usuario_1";
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas").child("Usuarios");
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
@@ -111,14 +110,20 @@ public class Historico extends AppCompatActivity
 
     private void mostrarDados(DataSnapshot dataSnapshot) {
         for (DataSnapshot usuario :dataSnapshot.getChildren()){
-            if (usuario.getKey().equals(KeyUsuarioApp)) {
+            if (usuario.getKey().equals(Login.KeyUsuarioApp)) {
+
                 for (DataSnapshot item : usuario.getChildren()){
-                    LendoDadosHistorico uDadosHistorico = new LendoDadosHistorico();
-                    Log.d("Historico", String.valueOf(item.getValue()));
-                    uDadosHistorico.setData_dev(item.getValue(LendoDadosHistorico.class).getData_dev());
-                    uDadosHistorico.setData_emp(item.getValue(LendoDadosHistorico.class).getData_emp());
-                    uDadosHistorico.setNome(item.getValue(LendoDadosHistorico.class).getNome());
-                    listaItemHistorico.add(uDadosHistorico);
+
+                    if(item.getKey().equals("items")) {
+
+                        for (DataSnapshot items : item.getChildren()) {
+                            LendoDadosHistorico uDadosHistorico = new LendoDadosHistorico();
+                            uDadosHistorico.setData_dev(items.getValue(LendoDadosHistorico.class).getData_dev());
+                            uDadosHistorico.setData_emp(items.getValue(LendoDadosHistorico.class).getData_emp());
+                            uDadosHistorico.setNome(items.getValue(LendoDadosHistorico.class).getNome());
+                            listaItemHistorico.add(uDadosHistorico);
+                        }
+                    }
                 }
             }
         }
