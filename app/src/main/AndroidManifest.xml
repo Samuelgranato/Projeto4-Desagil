@@ -45,6 +45,14 @@
             android:name=".Instrucoes"
             android:label="Instruções"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".InstrucoesShop"
+            android:label="Instruções Shop"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".InstrucoesImpressora"
+            android:label="Instruções Impressora 3D"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
