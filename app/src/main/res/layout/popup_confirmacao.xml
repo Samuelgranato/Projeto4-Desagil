@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="250dp"
+    android:layout_height="150dp"
+    android:id="@+id/rootPopUp"
+    android:background="@color/popup_background"
+    android:padding="5dp"
+    android:weightSum="5"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingBottom="0dp">
+
+        <TextView
+            android:id="@+id/Sucesso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Empréstimo realizado com sucesso!"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="Caso você nao necessite mais desse material, cancele para que outros possam usá-lo"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/okbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ok" />
+    </LinearLayout>
+
+    <!--android:background="@layout/popup_borda"-->
+
+
+
+</LinearLayout>

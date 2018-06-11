@@ -17,6 +17,10 @@ class LendoDados {
     private String funcao_emprestimo;
     private String aplicacao_emprestimo;
     private String quantidade_emprestimo;
+    private String descricao_emprestimo;
+    private String intervalo_emprestimo;
+    private String perda_emprestimo;
+    private String atraso_emprestimo;
 
 
 
@@ -106,6 +110,33 @@ class LendoDados {
     }
     public void setQuantidade_emprestimo(String quantidade_emprestimo) {
         this.quantidade_emprestimo= quantidade_emprestimo;
+    }
+
+    public String getDescricao_emprestimo() {
+        return descricao_emprestimo;
+    }
+    public void setDescricao_emprestimo(String descricao_emprestimo) {
+        this.descricao_emprestimo= descricao_emprestimo;
+    }
+
+    public String getIntervalo_emprestimo() {
+        return intervalo_emprestimo;
+    }
+    public void setIntervalo_emprestimo(String intervalo_emprestimo) {
+        this.intervalo_emprestimo= intervalo_emprestimo;
+    }
+
+    public String getPerda_emprestimo() {
+        return perda_emprestimo;
+    }
+    public void setPerda_emprestimo(String perda_emprestimo) {
+        this.perda_emprestimo= perda_emprestimo;
+    }
+    public String getAtraso_emprestimo() {
+        return atraso_emprestimo;
+    }
+    public void setAtraso_emprestimo(String atraso_emprestimo) {
+        this.atraso_emprestimo= atraso_emprestimo;
     }
 
 

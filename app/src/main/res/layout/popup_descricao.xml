@@ -2,21 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
     android:id="@+id/rootContainer_descricao"
     android:background="@color/popup_background"
-    android:layout_height="match_parent"
     android:weightSum="10"
+    android:layout_width="350dp"
+    android:layout_height="475dp"
+    android:layout_gravity="center"
     android:padding="5dp"> <!-- to show what the parent is -->
+
+    <TextView
+        android:id="@+id/txtclose"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:text="X"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_weight="6">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
@@ -32,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:paddingBottom="5dp">
 
         <LinearLayout
@@ -42,8 +53,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/emprestimo"
+                android:id="@+id/emprestimo2"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Empréstimo"
@@ -62,10 +74,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="20dp"
-                android:text='"Devolução:' />
+                android:text="Devolução:" />
 
             <TextView
-                android:id="@+id/multa"
+                android:id="@+id/multa2"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -107,7 +120,7 @@
                 android:text="Retirada:" />
 
             <TextView
-                android:id="@+id/devolucao"
+                android:id="@+id/devolucao_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -143,7 +156,7 @@
         android:layout_weight="1">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/confirma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

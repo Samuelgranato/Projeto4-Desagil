@@ -1,6 +1,9 @@
 package com.fablab.insper.fablabinsper;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -29,8 +36,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Emprestimos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +53,11 @@ public class Emprestimos extends AppCompatActivity
     private LinearLayout linearLayout;
     private LinearLayout linearLayout_1;
     private LinearLayout verticalLayout;
+    private Dialog myDialog;
+    private Dialog myDialog2;
+
+
+    private Map<Integer, List<String>> map = new HashMap<Integer, List<String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +66,20 @@ public class Emprestimos extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Paginas");
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        myDialog = new Dialog(this);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mostrarDados(dataSnapshot);
+
+
+
                 for(int i = 0; i < listaObjetos.size(); i++){
 
                     LayoutInflater inflater = Emprestimos.this.getLayoutInflater();
@@ -69,12 +94,24 @@ public class Emprestimos extends AppCompatActivity
                     TextView aplicacao_objeto = layout.findViewById(R.id.aplicacao);
                     aplicacao_objeto.setText((CharSequence) listaObjetos.get(i).getAplicacao_emprestimo());
 
-                    CheckBox checkbox = layout.findViewById(R.id.checkbox);
+
+                    final CheckBox checkbox = layout.findViewById(R.id.checkbox);
+                    checkbox.setId(R.id.checkbox+i);
+                    List<String> myList = new ArrayList<>();
+                    myList.add(listaObjetos.get(i).getDescricao_emprestimo());
+                    myList.add(listaObjetos.get(i).getIntervalo_emprestimo());
+                    myList.add(listaObjetos.get(i).getAtraso_emprestimo());
+                    myList.add(listaObjetos.get(i).getPerda_emprestimo());
+
+
+
+                    map.put(R.id.checkbox+i,myList);
+
+
 
                     checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            // update your model (or other business logic) based on isChecked
-
+                           ShowPopup(buttonView,checkbox.getId());
                         }
                     });
 
@@ -121,6 +158,81 @@ public class Emprestimos extends AppCompatActivity
         }
     }
 
+    public void ShowPopup(final View v,int id) {
+        final TextView txtclose;
+        Button btnFollow;
+        myDialog.setContentView(R.layout.popup_descricao);
+        final LinearLayout linearLayout_root = myDialog.findViewById(R.id.rootContainer_descricao);
+
+        TextView descricao = (TextView) myDialog.findViewById(R.id.descricao_content);
+        descricao.setText(map.get(id).get(0));
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date hoje = Calendar.getInstance().getTime();
+        String reportDate = df.format(hoje);
+        String day = reportDate.substring(0,2);
+
+        int day_int = Integer.parseInt(day);
+        day_int+=Integer.parseInt(map.get(id).get(1));
+        day = (String.valueOf(day_int) + reportDate.substring(2));
+        TextView devolucao = (TextView) myDialog.findViewById(R.id.devolucao_value);
+        devolucao.setText(day);
+
+        TextView retirada = (TextView) myDialog.findViewById(R.id.retirada_value);
+        retirada.setText(reportDate);
+
+        TextView atraso = (TextView) myDialog.findViewById(R.id.atraso_value);
+        atraso.setText(map.get(id).get(2));
+
+        TextView perda = (TextView) myDialog.findViewById(R.id.perda_value);
+        perda.setText(map.get(id).get(3));
+
+
+        txtclose = (TextView) myDialog.findViewById(R.id.txtclose);
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        myDialog2 = new Dialog(this);
+
+        ImageButton confirma_button = (ImageButton) myDialog.findViewById(R.id.confirma);
+        confirma_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowPopup2(v);
+            }
+        });
+
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+    public void ShowPopup2(final View v) {
+        final TextView txtclose;
+        myDialog2.setContentView(R.layout.popup_confirmacao);
+        final LinearLayout linearLayout_root = myDialog2.findViewById(R.id.rootPopUp);
+        Button okclose =(Button) myDialog2.findViewById(R.id.okbutton);
+
+
+
+        okclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog2.dismiss();
+                myDialog.dismiss();
+            }
+        });
+        myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog2.show();
+    }
+
+
+
     private void mostrarDados(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds: dataSnapshot.getChildren()){
             String key = ds.getKey().toString();
@@ -133,6 +245,11 @@ public class Emprestimos extends AppCompatActivity
                     uDados.setFuncao_emprestimo(ds_1.getValue(LendoDados.class).getFuncao_emprestimo());
                     uDados.setAplicacao_emprestimo(ds_1.getValue(LendoDados.class).getAplicacao_emprestimo());
                     uDados.setQuantidade_emprestimo(ds_1.getValue(LendoDados.class).getQuantidade_emprestimo());
+                    uDados.setDescricao_emprestimo(ds_1.getValue(LendoDados.class).getDescricao_emprestimo());
+                    uDados.setIntervalo_emprestimo(ds_1.getValue(LendoDados.class).getIntervalo_emprestimo());
+                    uDados.setAtraso_emprestimo(ds_1.getValue(LendoDados.class).getAtraso_emprestimo());
+                    uDados.setPerda_emprestimo(ds_1.getValue(LendoDados.class).getPerda_emprestimo());
+
                     listaObjetos.add(uDados);
                 }
             }

@@ -65,6 +65,7 @@ public class Home extends AppCompatActivity
                     tituloNoticia.setText((CharSequence) listaObjetos.get(i).getTitulo());
                     Picasso.get().load(listaObjetos.get(i).getImg()).into(imagemNoticia);
                     linearLayout.addView(layout);
+
                 }
             }
 
